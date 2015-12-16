@@ -1,10 +1,15 @@
 package fr.gaifaim.model;
 
+import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -14,12 +19,6 @@ public class Utilisateur {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-
-	@Column(name = "ID_ROLE", nullable = false)
-	private Integer idRole;
-
-	@Column(name = "NOM", nullable = false)
-	private String nom;
 
 	@Column(name = "LOGIN", nullable = false)
 	private String login;
@@ -32,6 +31,17 @@ public class Utilisateur {
 
 	@Column(name = "EMAIL", nullable = false)
 	private String email;
+	
+	@ManyToMany(mappedBy="utilisateurs")
+	private Set<Role> roles;
+
+	public Set<Role> getRoles() {
+		return roles;
+	}
+
+	public void setRoles(Set<Role> roles) {
+		this.roles = roles;
+	}
 
 	public int getId() {
 		return id;
@@ -39,19 +49,6 @@ public class Utilisateur {
 
 	public void setId(int id) {
 		this.id = id;
-	}
-
-	@Override
-	public String toString() {
-		return "Utilisateur [id=" + id + ", idRole=" + idRole + ", nom=" + nom + ", telephone=" + telephone + ", email=" + email + "]";
-	}
-
-	public String getNom() {
-		return nom;
-	}
-
-	public void setNom(String nom) {
-		this.nom = nom;
 	}
 
 	public String getLogin() {
@@ -85,13 +82,4 @@ public class Utilisateur {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-
-	public Integer getIdRole() {
-		return idRole;
-	}
-
-	public void setIdRole(Integer idRole) {
-		this.idRole = idRole;
-	}
-
 }

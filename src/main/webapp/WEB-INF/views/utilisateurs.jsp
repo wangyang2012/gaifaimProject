@@ -28,13 +28,11 @@
     <c:out value="Bonjour" /><br/>
     <table>
         <tr>
-            <td>NOM</td><td>LOGIN</td><td>ID_ROLE</td><td>EMAIL</td><td>TELEPHONE</td>
+            <td>LOGIN</td><td>EMAIL</td><td>TELEPHONE</td><td></td><td></td>
         </tr>
         <c:forEach items="${utilisateurs}" var="utilisateur">
             <tr>
-            <td>'${utilisateur.nom}'</td>
             <td>${utilisateur.login}</td>
-            <td>${utilisateur.idRole}</td>
             <td>${utilisateur.email}</td>
             <td>${utilisateur.telephone}</td>
             <td><a href="<c:url value='/edit-${utilisateur.id}-utilisateur' />">Modifier</a></td>

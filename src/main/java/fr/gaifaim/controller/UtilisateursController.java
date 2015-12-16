@@ -14,7 +14,7 @@ import fr.gaifaim.service.IUtilisateurService;
 
 @Controller
 @RequestMapping("/")
-public class AppController {
+public class UtilisateursController {
 
 	@Autowired
 	IUtilisateurService service;
