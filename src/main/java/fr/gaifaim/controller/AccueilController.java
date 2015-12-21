@@ -14,7 +14,7 @@ import fr.gaifaim.service.IUtilisateurService;
 
 @Controller
 @RequestMapping("/")
-public class UtilisateursController {
+public class AccueilController {
 
 	@Autowired
 	IUtilisateurService service;
@@ -25,13 +25,10 @@ public class UtilisateursController {
 	/*
 	 * This method will list all existing utilisateurs.
 	 */
-	@RequestMapping(value = { "/listeUtilisateur"}, method = RequestMethod.GET)
-	public String listUtilisateur(ModelMap model) {
+	@RequestMapping(value = { "/", "/accueil" }, method = RequestMethod.GET)
+	public String accueil(ModelMap model) {
 
-		List<Utilisateur> utilisateurs = service.getAllUtilisateurs();
-		model.addAttribute("utilisateurs", utilisateurs);
-		model.addAttribute("msg", "coucou");
-		return "utilisateurs";
+		return "accueil";
 	}
 
 	//	/*
