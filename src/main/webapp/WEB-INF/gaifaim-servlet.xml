@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xsi:schemaLocation="
+       http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+       http://www.springframework.org/schema/mvc
+       http://www.springframework.org/schema/mvc/spring-mvc-3.2.xsd
+       http://www.springframework.org/schema/context
+       http://www.springframework.org/schema/context/spring-context-3.2.xsd">
+
+    <!-- Activation des annotations -->
+    <context:annotation-config />
+
+    <context:component-scan base-package="fr.gaifaim.controller" />
+
+    <!-- Chargement des properties de l'application -->
+<!--     <import resource="application-properties.xml" /> -->
+
+	<!-- Déclaration des ressources statique afin que la ServletDispatcher les ignore -->
+	<mvc:annotation-driven />
+	<mvc:resources mapping="/img/**" location="/img/"  cache-period="31556926"/>
+	<mvc:resources mapping="/css/**" location="/css/" />
+	<mvc:resources mapping="/js/**" location="/js/" />
+	<mvc:resources mapping="/jquery/**" location="/jquery/" />
+	<mvc:resources mapping="/bootstrap/**" location="/bootstrap/" />
+	<mvc:resources mapping="/admin/**" location="/admin/" />
+	<mvc:resources mapping="/html/**" location="/html/" />
+
+	<!-- Déclaration des ressources externe de l'application -->
+<!-- 	<mvc:resources mapping="/content/**" location="file:${intranet.ressources.path}/" /> -->
+<!-- 	<mvc:resources mapping="/medias/**" location="file:${intranet.ressources.path}/${intranet.path.media}/" /> -->
+
+
+</beans>

@@ -6,37 +6,38 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link href="/resources/bootstrap/css/bootstrap.css" rel="stylesheet">
-<link href="/resources/jquery/jquery-ui.css" rel="stylesheet">
-<script src="/resources/jquery/jquery-1.10.2.js"></script>
-<script src="/resources/jquery/jquery-ui.js"></script>
+<link href="${contextPath}/bootstrap/css/bootstrap.css" rel="stylesheet">
+<link href="${contextPath}/jquery/jquery-ui.css" rel="stylesheet">
+<script src="${contextPath}/jquery/jquery-1.10.2.js"></script>
+<script src="${contextPath}/jquery/jquery-ui.js"></script>
 
 <title>Gaifaim - Accueil</title>
 
 <script>
 	
 	function reserver() {
-		if ("xx${userLogin}" == "") {
+		if ("${userLogin}" == "") {
 			showLoginForm();
 		} else {
 			showFormReserver();
 		}
 	}
 	
-	function fermerFormReserver() {
-		$("div.dialog-reserver").hide("slow");
+	function hideFormReserver() {
+		$("#dialog-reserver").hide("slow");
 	}
 	
 	function showFormReserver() {
-		$("div.dialog-reserver").show("slow");
+		$("#dialog-reserver").show("slow");
 	}
 	
 	function showLoginForm() {
-		$("div.dialog-login").show("slow");
+		var dialog = $("div.dialog-login");
+		$("#dialog-login").show("slow");
 	}
 	
 	function hideLoginForm() {
-		$("div.dialog-login").hide("slow");
+		$("#dialog-login").hide("slow");
 	}
 	
 
@@ -131,9 +132,7 @@
 	<div class="container">
 		<header class="row">
 			<div class="col-lg-2">
-				<img src="/gaifaim/logos/gaifaim.png" alt="Gaifaim" /><img
-					src="/logos/gaifaim.png" alt="Gaifaim" /><img
-					src="logos/gaifaim.png" alt="Gaifaim" />
+				<img src="${contextPath}/img/gaifaim.png" alt="Gaifaim" />
 			</div>
 			<div class="col-lg-8"></div>
 			<div class="col-lg-2">
@@ -148,8 +147,16 @@
 			</section>
 
 			<section class="col-lg-4">
-				ENTREE + PLAT + DESSERT = 10 € ★ Un menu unique(le midi) par jour
-				suggéré par le chef. ★ Livraison uniquement à Boulogne-Billancourt
+				ENTREE<br/>
+				 + <br/>
+				 PLAT<br/>
+				  + <br/>
+				  DESSERT<br/>
+				   = <br/>
+				   10 €<br/>
+				   ...................<br/>
+				   ★ Un menu unique(le midi) par jour suggéré par le chef.<br/>
+				   ★ Livraison uniquement à Boulogne-Billancourt<br/>
 
 				<h1>
 					<a onClick="reserver()">RESERVER</a>
@@ -160,14 +167,14 @@
 
 		<footer class="row">
 			<div class="col-lg-8">
-				Tél: 06 95 39 00 07<br /> <a href="mailto:resa@gaifaim.com">resa@gaifaim.com</a>
+				Tél: 06 95 39 00 07<br/> <a href="mailto:resa@gaifaim.com">resa@gaifaim.com</a>
 			</div>
 			<div class="col-lg-4"></div>
 		</footer>
 	</div>
 
 	<!-- 	LOGIN -->
-	<div id="dialog-login" title="Se connecter" style="display: none">
+	<div id="dialog-login" title="Se connecter">
 		<form id="formLogin" class="form-horizontal col-lg-6"
 			action="/gaifaim/login">
 			<div class="row">
@@ -203,7 +210,7 @@
 
 
 	<!-- 	RESERVATION -->
-	<div id="dialog-reserver" title="Réservation" style="display: none">
+	<div id="dialog-reserver" title="Réservation">
 		<form id="formReserver" class="form-horizontal col-lg-6"
 			action="/gaifaim/reserver">
 			<div class="row">

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	   xsi:schemaLocation="
+	   http://www.springframework.org/schema/beans
+	   http://www.springframework.org/schema/beans/spring-beans-3.2.xsd">
+
+    <!-- Fichier de config Spring qui permet de sélectionner selon le profil les fichiers properties à charger. -->
+
+    <!-- Les datasources disponibles sont : -->
+    <!-- informix-ab-dbtest.properties = base de données Informix dbtest d'Alterburo -->
+    <!-- informix-ab-dbrepli.properties = base de données Informix dbrepli d'Alterburo -->
+    <!-- informix-ab-portailsap.properties = base de données Informix portailsap d'Alterburo -->
+    <!-- mssql-ar-dev.properties = base de données MSSQL d'Augusta Reeves -->
+
+
+    <beans profile="ywang">
+        <!-- Chargement des properties -->
+        <bean id="applicationProperty" class="fr.alterburo.framework.properties.ApplicationPropertyUtils">
+            <property name="locations">
+                <list>
+                    <value>classpath:conf.properties</value>
+                    <value>classpath:constantes.properties</value>
+                    <value>classpath:edi.properties</value>
+                    <value>classpath:ds/mssql-ar-dev.properties</value>
+<!--                     <value>classpath:ds/informix-ab-dbtest.properties</value> -->
+                </list>
+            </property>
+            <property name="prefixe" value="intranet." />
+        </bean>
+    </beans>
+
+</beans>
