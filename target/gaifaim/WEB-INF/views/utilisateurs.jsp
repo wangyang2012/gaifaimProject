@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core " %>
+    
+<%@ include file="/taglibs.jsp"%>
+
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -17,16 +19,20 @@
  
  
 <body>
+
+<c:set var="myValue" value="a tag </tag>" />
+<c:out value="${myValue}" />
+
     <h2>Liste des utilisateurs</h2>  
+    ${utilisateurs} ---${msg}
+    <c:out value="Bonjour" /><br/>
     <table>
         <tr>
-            <td>NOM</td><td>LOGIN</td><td>ID_ROLE</td><td>EMAIL</td><td>TELEPHONE</td>
+            <td>LOGIN</td><td>EMAIL</td><td>TELEPHONE</td><td></td><td></td>
         </tr>
-        <c:forEach items="${utilisateurs}" var="utilisateurs">
+        <c:forEach items="${utilisateurs}" var="utilisateur">
             <tr>
-            <td>${utilisateur.nom}</td>
             <td>${utilisateur.login}</td>
-            <td>${utilisateur.idRole}</td>
             <td>${utilisateur.email}</td>
             <td>${utilisateur.telephone}</td>
             <td><a href="<c:url value='/edit-${utilisateur.id}-utilisateur' />">Modifier</a></td>
