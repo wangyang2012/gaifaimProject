@@ -43,6 +43,8 @@
 
 	// dialogue reserver
 	$(document).ready(function() {
+		$("#dialog-login").hide("slow");
+		$("#dialog-reserver").hide("slow");
 		   
 		  $('#formReserver').submit(function(event) {
 			   
