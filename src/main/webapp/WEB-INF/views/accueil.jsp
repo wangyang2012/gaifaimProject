@@ -8,6 +8,8 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link href="${contextPath}/bootstrap/css/bootstrap.css" rel="stylesheet">
 <link href="${contextPath}/jquery/jquery-ui.css" rel="stylesheet">
+<link href="${contextPath}/css/gaifaim.css" rel="stylesheet">
+
 <script src="${contextPath}/jquery/jquery-1.10.2.js"></script>
 <script src="${contextPath}/jquery/jquery-ui.js"></script>
 
@@ -130,13 +132,48 @@
 
 
 <body>
-
 	<div class="container">
+	
+		<nav class="navbar navbar-inverse">
+			<div class="navbar-header">
+			  <a class="navbar-brand" href="#">GAI FAIM</a>
+		    </div>
+	        <div class="container-fluid">
+	          <ul class="nav navbar-nav">
+	            <li class="active"> <a href="#">Accueil</a> </li>
+	            <li> <a href="#">Liens<span class="badge">42</span></a> </li>
+	            <li> <a href="#">Témoignages</a> </li>
+				<li class="dropdown"> 
+					<a data-toggle="dropdown" href="#">Témoignages<b class="caret"></b></a>
+					<ul class="dropdown-menu">
+					  <li><a href="#">Dompteurs</a></li>
+					  <li><a href="#">Zoos</a></li>
+					  <li><a href="#">Chasseurs</a></li>
+					  <li class="divider"></li>
+					  <li><a href="#">Autres témoignages</a></li>
+					</ul>
+				  </li>
+	            <li> <a href="#">Références</a> </li>
+				 <li class="disabled"> <a href="#">Références</a> </li>
+	          </ul>
+	          <form class="navbar-form navbar-right inline-form">
+	            <div class="form-group">
+	              <input type="search" class="input-sm form-control" placeholder="Recherche">
+	              <button type="submit" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-eye-open"></span> Chercher</button>
+	            </div>
+	          </form>
+	        </div>
+	      </nav>
+      
+	
 		<header class="row">
 			<div class="col-lg-2">
 				<img src="${contextPath}/img/gaifaim.png" alt="Gaifaim" />
 			</div>
-			<div class="col-lg-8"></div>
+			<div class="col-lg-8">
+			
+			
+			</div>
 			<div class="col-lg-2">
 				<a>Se connecter</a>
 			</div>
