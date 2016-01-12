@@ -140,28 +140,14 @@
 		    </div>
 	        <div class="container-fluid">
 	          <ul class="nav navbar-nav">
-	            <li class="active"> <a href="#">Accueil</a> </li>
-	            <li> <a href="#">Liens<span class="badge">42</span></a> </li>
-	            <li> <a href="#">Témoignages</a> </li>
-				<li class="dropdown"> 
-					<a data-toggle="dropdown" href="#">Témoignages<b class="caret"></b></a>
-					<ul class="dropdown-menu">
-					  <li><a href="#">Dompteurs</a></li>
-					  <li><a href="#">Zoos</a></li>
-					  <li><a href="#">Chasseurs</a></li>
-					  <li class="divider"></li>
-					  <li><a href="#">Autres témoignages</a></li>
-					</ul>
-				  </li>
-	            <li> <a href="#">Références</a> </li>
-				 <li class="disabled"> <a href="#">Références</a> </li>
+	            <li class="active"> <a href="#">ACCUEIL</a> </li>
+	            <li> <a href="#">MENUS</a> </li>
+	            <li> <a href="#">MES RESERVATIONS</a> </li>
+	            <li> <a href="#">SAVOIR-FAIRE</a> </li>
 	          </ul>
-	          <form class="navbar-form navbar-right inline-form">
-	            <div class="form-group">
-	              <input type="search" class="input-sm form-control" placeholder="Recherche">
-	              <button type="submit" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-eye-open"></span> Chercher</button>
-	            </div>
-	          </form>
+	          <div class="navbar-form navbar-right inline-form">
+	          	<a>Se connecter</a>
+	          </div>
 	        </div>
 	      </nav>
       
@@ -175,7 +161,6 @@
 			
 			</div>
 			<div class="col-lg-2">
-				<a>Se connecter</a>
 			</div>
 		</header>
 
