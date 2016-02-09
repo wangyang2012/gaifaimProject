@@ -12,6 +12,7 @@
 
 <script src="${contextPath}/jquery/jquery-1.10.2.js"></script>
 <script src="${contextPath}/jquery/jquery-ui.js"></script>
+<script src="${contextPath}/bootstrap/js/bootstrap.min.js"></script>
 
 <title>Gaifaim - Accueil</title>
 
