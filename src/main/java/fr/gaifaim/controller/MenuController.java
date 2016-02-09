@@ -1,6 +1,6 @@
 package fr.gaifaim.controller;
 
-import javax.servlet.http.HttpSession;
+import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
@@ -9,12 +9,12 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import fr.gaifaim.model.Utilisateur;
 import fr.gaifaim.service.IUtilisateurService;
+import fr.gaifaim.utils.DateUtil;
 
 @Controller
 @RequestMapping("/")
-public class AccueilController {
+public class MenuController {
 
 	@Autowired
 	IUtilisateurService service;
@@ -25,16 +25,15 @@ public class AccueilController {
 	/*
 	 * This method will list all existing utilisateurs.
 	 */
-	@RequestMapping(value = { "/", "/accueil" }, method = RequestMethod.GET)
-	public String accueil(ModelMap model, HttpSession session) {
-		Utilisateur utilisateur = (Utilisateur) session.getAttribute("utilisateur");
-		if (utilisateur != null) {
-			model.addAttribute("logged", true);
-			model.addAttribute("utilisateur", utilisateur);
-		} else {
-			model.addAttribute("logged", false);
-		}
-		return "accueil";
+	@RequestMapping(value = { "menu" }, method = RequestMethod.GET)
+	public String menu(ModelMap model) {
+		Date date = new Date();
+		String strDate = DateUtil.formateDateToString(date);
+		
+		model.addAttribute("date", strDate);
+		model.addAttribute("entree", "春卷");
+		model.addAttribute("plat", "鱼香茄子");
+		return "menu";
 	}
 
 	//	/*
@@ -46,6 +45,33 @@ public class AccueilController {
 	//		model.addAttribute("employee", employee);
 	//		model.addAttribute("edit", false);
 	//		return "registration";
+	//	}
+	//
+	//	/*
+	//	 * This method will be called on form submission, handling POST request for saving employee in database. It also validates the user input
+	//	 */
+	//	@RequestMapping(value = { "/new" }, method = RequestMethod.POST)
+	//	public String saveEmployee(@Valid Employee employee, BindingResult result, ModelMap model) {
+	//
+	//		if (result.hasErrors()) {
+	//			return "registration";
+	//		}
+	//
+	//		/*
+	//		 * Preferred way to achieve uniqueness of field [ssn] should be implementing custom @Unique annotation and applying it on field [ssn] of Model class [Employee].
+	//		 * 
+	//		 * Below mentioned peace of code [if block] is to demonstrate that you can fill custom errors outside the validation framework as well while still using internationalized messages.
+	//		 */
+	//		if (!service.isEmployeeSsnUnique(employee.getId(), employee.getSsn())) {
+	//			FieldError ssnError = new FieldError("employee", "ssn", messageSource.getMessage("non.unique.ssn", new String[] { employee.getSsn() }, Locale.getDefault()));
+	//			result.addError(ssnError);
+	//			return "registration";
+	//		}
+	//
+	//		service.saveEmployee(employee);
+	//
+	//		model.addAttribute("success", "Employee " + employee.getName() + " registered successfully");
+	//		return "success";
 	//	}
 	//
 	//	/*

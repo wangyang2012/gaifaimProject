@@ -4,6 +4,10 @@
 -- ------------------------------------------------------
 -- Server version	10.0.17-MariaDB
 
+CREATE DATABASE IF NOT EXISTS gaifaim;
+
+use gaifaim;
+
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;

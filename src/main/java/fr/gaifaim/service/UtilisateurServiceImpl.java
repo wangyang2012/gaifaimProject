@@ -44,4 +44,8 @@ public class UtilisateurServiceImpl implements IUtilisateurService {
 	public List<Utilisateur> getAllUtilisateurs() {
 		return dao.getAllUtilisateurs();
 	}
+
+	public Utilisateur getUtilisateurByLoginAndMdp(String login, String mdp) {
+		return dao.getUtilisateurByLoginAndMdp(login, mdp);
+	}
 }

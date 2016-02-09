@@ -19,7 +19,6 @@
 	
 	function reserver() {
 		if ("${userLogin}" == "") {
-			alert("Veuillez vous connecter!");
 			showLoginForm();
 		} else {
 			showFormReserver();
@@ -43,7 +42,7 @@
 		$("#dialog-login").hide("slow");
 	}
 	
-	
+
 	// dialogue reserver
 	$(document).ready(function() {
 		$("#dialog-login").hide("slow");
@@ -72,6 +71,9 @@
 					 
 					var respContent = "";
 					if (response != null && response.codeRetour == 1) {
+						respContent = "<span class='success'>Smartphone was created: [";
+						respContent += response.message + "]</span>";
+						$("#reserverFormResponse").html(respContent);
 						hideFormReserver();
 					} else {
 						respContent = "<span class='error'>Une erreur est survenue!</span>";
@@ -107,8 +109,11 @@
 					 
 					var respContent = "";
 					if (response != null && response.codeRetour == 1) {
-						document.getElementById('seConnecterField').innerHTML="<a>Bonjour, " + response.message + "!</a>";
+						respContent = "<span class='success'>Smartphone was created: [";
+						respContent += response.message + "]</span>";
+						$("#loginFormResponse").html(respContent);
 						hideLoginForm();
+						showFormReserver();
 					} else {
 						respContent = "<span class='error'>Une erreur est survenue!</span>";
 						$("#loginFormResponse").html(respContent);
@@ -135,68 +140,42 @@
 		    </div>
 	        <div class="container-fluid">
 	          <ul class="nav navbar-nav">
-	            <li class="active"> <a href="#">ACCUEIL</a> </li>
-	            <li> <a href="${contextPath}/menu">MENUS</a> </li>
+	            <li> <a href="${contextPath}/accueil">ACCUEIL</a> </li>
+	            <li class="active"> <a href="#">MENUS</a> </li>
 	            <li> <a href="#">MES RESERVATIONS</a> </li>
 	            <li> <a href="#">SAVOIR-FAIRE</a> </li>
-         
-	            <li class="dropdown"> 
-					<a data-toggle="dropdown" class="dropdown-toggle">ADMIN<b class="caret"></b></a>
-					<ul class="dropdown-menu">
-						<li><a href="#">Comptes</a></li>
-					  	<li><a href="#">Menus</a></li>
-					  	<li><a href="#">Réservations</a></li>
-					</ul>
-				  </li>
 	          </ul>
-	          <div class="navbar-form navbar-right inline-form" id="seConnecterField">
-	          
-	          	<c:choose>
-		          	<c:when test="${logged eq true}">
-		          		<a>Bonjour, ${utilisateur.login}</a>
-		          	</c:when>
-		          	<c:when test="${logged eq false}">
-		          		<a onClick="javascript:showLoginForm()">Se connecter</a>
-		          	</c:when>
-	          	</c:choose>
+	          <div class="navbar-form navbar-right inline-form">
+	          	<a onClick="javascript:showLoginForm()">Se connecter</a>
 	          </div>
 	        </div>
 	      </nav>
+      
 	
-		<header class="row">
-			<div class="col-lg-2">
+		<div class="row">
+			<div class="col-lg-4">
 				<img src="${contextPath}/img/gaifaim.png" alt="Gaifaim" />
 			</div>
 			<div class="col-lg-8">
-			
-			
+				<div class="row">
+					<div class="col-lg-5">
+					<a href="#"><<<</a>
+					</div>
+					<div class="col-lg-5">
+					${date}
+					
+					</div>
+					<div class="col-lg-2">
+					<a href="#">>>></a>
+					</div>
+					
+				</div>
+				<div class="row">
+					${entree}<br/>
+					${plat}
+				</div>
+				
 			</div>
-			<div class="col-lg-2">
-			</div>
-		</header>
-
-		<div class="row"*>
-			<section class="col-lg-8">
-				MENU MIDI DELICIEUX<br />plus de saveurs tous les jours<br />LIVRAISON
-				GRATUITE
-			</section>
-
-			<section class="col-lg-4">
-				ENTREE<br/>
-				 + <br/>
-				 PLAT<br/>
-				  + <br/>
-				  DESSERT<br/>
-				   = <br/>
-				   10 €<br/>
-				   ...................<br/>
-				   ★ Un menu unique(le midi) par jour suggéré par le chef.<br/>
-				   ★ Livraison uniquement à Boulogne-Billancourt<br/>
-
-				<h1>
-					<a onClick="reserver()">RESERVER</a>
-				</h1>
-			</section>
 		</div>
 
 		<footer class="row">
@@ -210,31 +189,31 @@
 	<!-- 	LOGIN -->
 	<div id="dialog-login" title="Se connecter">
 		<form id="formLogin" class="form-horizontal col-lg-6"
-			action="${contextPath}/login">
-			<header>Login</header>
-<%-- 				<a class="text-right" onClick="javascript:hideLoginForm()>X</a> --%>
+			action="/gaifaim/login">
 			<div class="row">
 				<div id="loginFormResponse"></div>
 			</div>
 			<div class="row">
 				<div class="form-group">
-					<label for="login" class="col-lg-4 control-label">Login : </label>
-					<div class="col-lg-8">
+					<label for="login" class="col-lg-2 control-label">Login : </label>
+					<div class="col-lg-10">
 						<input type="text" class="form-control" id="login">
 					</div>
 				</div>
 			</div>
 			<div class="row">
 				<div class="form-group">
-					<label for="mdp" class="col-lg-4 control-label">Mot de passe : </label>
-					<div class="col-lg-8">
+					<label for="mdp" class="col-lg-2 control-label">Mot de
+						passe : </label>
+					<div class="col-lg-10">
 						<input type="password" class="form-control" id="mdp">
 					</div>
 				</div>
 			</div>
 			<div class="row">
 				<div class="form-group">
-					<label class="pull-left"><a href="/gaifaim/creationCompte">Créer un compte</a></label>
+					<label class="pull-left"><a href="/gaifaim/creationCompte">Créer
+							un compte</a></label>
 					<button class="pull-right btn btn-default">Connecter</button>
 				</div>
 			</div>
@@ -253,8 +232,8 @@
 			<!-- login -->
 			<div class="row">
 				<div class="form-group">
-					<label for="login" class="col-lg-4 control-label">Login : </label>
-					<div class="col-lg-8">
+					<label for="login" class="col-lg-2 control-label">Login : </label>
+					<div class="col-lg-10">
 						<input type="text" class="form-control" id="login"
 							value="${utilisateur.login}">
 					</div>
@@ -263,9 +242,9 @@
 			<!-- téléphone -->
 			<div class="row">
 				<div class="form-group">
-					<label for="telephone" class="col-lg-4 control-label">Téléphone
+					<label for="telephone" class="col-lg-2 control-label">Téléphone
 						: </label>
-					<div class="col-lg-8">
+					<div class="col-lg-10">
 						<input type="text" class="form-control" id="telephone"
 							value="${utilisateur.telephone}">
 					</div>
@@ -274,9 +253,9 @@
 			<!-- e-mail -->
 			<div class="row">
 				<div class="form-group">
-					<label for="email" class="col-lg-4 control-label">E-mail :
+					<label for="email" class="col-lg-2 control-label">E-mail :
 					</label>
-					<div class="col-lg-8">
+					<div class="col-lg-10">
 						<input type="text" class="form-control" id="email"
 							value="${utilisateur.email}">
 					</div>
@@ -285,9 +264,9 @@
 			<!-- adresse -->
 			<div class="row">
 				<div class="form-group">
-					<label for="adresse" class="col-lg-4 control-label">Adresse
+					<label for="adresse" class="col-lg-2 control-label">Adresse
 						: </label>
-					<div class="col-lg-8">
+					<div class="col-lg-10">
 						<input type="text" class="form-control" id="adresse"
 							value="${utilisateur.adresse}">
 					</div>
@@ -296,9 +275,9 @@
 			<!-- quantite -->
 			<div class="row">
 				<div class="form-group">
-					<label for="quantite" class="col-lg-4 control-label">Quantité
+					<label for="quantite" class="col-lg-2 control-label">Quantité
 						: </label>
-					<div class="col-lg-8">
+					<div class="col-lg-10">
 						<input type="text" class="form-control" id="quantite" value="1">
 					</div>
 				</div>
@@ -307,8 +286,8 @@
 			<!-- note -->
 			<div class="row">
 				<div class="form-group">
-					<label for="note" class="col-lg-4 control-label">Note : </label>
-					<div class="col-lg-8">
+					<label for="note" class="col-lg-2 control-label">Note : </label>
+					<div class="col-lg-10">
 						<input type="textarea" class="form-control" id="note">
 					</div>
 				</div>

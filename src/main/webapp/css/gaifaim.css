@@ -14,13 +14,32 @@ body {
 	overflow: hidden;
 }
 
-li > a {
-    color: #FFFFFF;
-    font-family: 'Shadows Into Light',cursive;
-    font-size: 15px;
-    line-height: 1;
-    position: relative;
-    text-align: center;
-    text-decoration: none;
-    text-transform: uppercase;
+li>a {
+	color: #FFFFFF;
+	font-family: 'Shadows Into Light', cursive;
+	font-size: 15px;
+	line-height: 1;
+	position: relative;
+	text-align: center;
+	text-decoration: none;
+	text-transform: uppercase;
 }
+
+#dialog-login {
+	position: absolute;
+	left: 30px;
+	top: 30px;
+	width: 600px;
+	background-color: black;
+	color: yellow;
+}
+
+#dialog-reserver {
+	position: absolute;
+	left: 30px;
+	top: 30px;
+	width: 600px;
+	background-color: black;
+	color: yellow;
+}
+

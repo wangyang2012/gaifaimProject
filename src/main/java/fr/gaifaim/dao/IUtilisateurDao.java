@@ -6,4 +6,6 @@ import fr.gaifaim.model.Utilisateur;
 
 public interface IUtilisateurDao {
 	List<Utilisateur> getAllUtilisateurs();
+
+	Utilisateur getUtilisateurByLoginAndMdp(String login, String mdp);
 }

@@ -1,5 +1,10 @@
 package fr.gaifaim.controller;
 
+import java.util.Map;
+
+import javax.servlet.http.HttpSession;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -8,13 +13,16 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import fr.gaifaim.model.ResponseJsonBean;
+import fr.gaifaim.model.Utilisateur;
+import fr.gaifaim.service.IUtilisateurService;
+import fr.gaifaim.utils.JsonUtil;
 
 @Controller
 @RequestMapping("/")
 public class LoginController {
 
-//	@Autowired
-//	IUtilisateurService service;
+	@Autowired
+	private IUtilisateurService service;
 
 //	@Autowired
 //	MessageSource messageSource;
@@ -24,9 +32,22 @@ public class LoginController {
 	 */
 	  @RequestMapping(value="/login", method=RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
 	    @ResponseBody
-	    public ResponseJsonBean reserver(@RequestBody String form) {
+	    public ResponseJsonBean reserver(@RequestBody String form, HttpSession session) {
 		  
-	        return new ResponseJsonBean(ResponseJsonBean.REUSSI, "OK"); 
+		  Map<String, String> map = JsonUtil.toMap(form);
+		  String login = map.get("login");
+		  String mdp = map.get("mdp");
+		  
+		  Utilisateur utilisateur = service.getUtilisateurByLoginAndMdp(login, mdp);
+		  if (utilisateur != null) {
+			  session.setAttribute("utilisateur", utilisateur);
+			  return new ResponseJsonBean(ResponseJsonBean.REUSSI, utilisateur.getLogin()); 
+			  
+		  } else {
+			  session.setAttribute("utilisateur", null);
+			  return new ResponseJsonBean(ResponseJsonBean.ECHEC, "Utilisateur non trouvé!");
+		  }
+		  
 	    }
 
 	//	/*

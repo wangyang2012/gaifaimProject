@@ -32,6 +32,9 @@ public class Utilisateur {
 	@Column(name = "EMAIL", nullable = false)
 	private String email;
 	
+	@Column(name = "ADRESSE")
+	private String adresse;
+	
 	@ManyToMany(mappedBy="utilisateurs")
 	private Set<Role> roles;
 
@@ -81,5 +84,13 @@ public class Utilisateur {
 
 	public void setEmail(String email) {
 		this.email = email;
+	}
+	
+	public String getAdresse() {
+		return adresse;
+	}
+
+	public void setAdresse(String adresse) {
+		this.adresse = adresse;
 	}
 }
