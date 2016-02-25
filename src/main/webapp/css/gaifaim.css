@@ -14,6 +14,10 @@ body {
 	overflow: hidden;
 }
 
+a:hover {
+	cursor: pointer;	
+}
+
 li>a {
 	color: #FFFFFF;
 	font-family: 'Shadows Into Light', cursive;
@@ -27,19 +31,34 @@ li>a {
 
 #dialog-login {
 	position: absolute;
-	left: 30px;
+	left: 500px;
 	top: 30px;
-	width: 500px;
+	width: 400px;
 	background-color: black;
 	color: yellow;
 }
 
 #dialog-reserver {
 	position: absolute;
-	left: 30px;
+	left: 500px;
 	top: 30px;
-	width: 500px;
+	width: 400px;
 	background-color: black;
 	color: yellow;
 }
 
+.titre1 {
+	line-height: 80px;
+	text-transform: uppercase;
+	font-size: 28px;
+	text-align: center;
+	font-family: 'Open Sans',sans-serif;
+}
+
+#menu-midi {
+	color: #FF0000;	
+}
+
+#livraison-gratuite {
+	color: #FFA500;
+}

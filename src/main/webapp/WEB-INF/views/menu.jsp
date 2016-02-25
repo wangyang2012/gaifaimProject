@@ -145,8 +145,15 @@
 	            <li> <a href="#">MES RESERVATIONS</a> </li>
 	            <li> <a href="#">SAVOIR-FAIRE</a> </li>
 	          </ul>
-	          <div class="navbar-form navbar-right inline-form">
-	          	<a onClick="javascript:showLoginForm()">Se connecter</a>
+	            <div class="navbar-form navbar-right inline-form" id="seConnecterField">
+	          	<c:choose>
+		          	<c:when test="${logged eq true}">
+		          		<a>Bonjour, ${utilisateur.login}</a>
+		          	</c:when>
+		          	<c:when test="${logged eq false}">
+		          		<a onClick="javascript:showLoginForm()">Se connecter</a>
+		          	</c:when>
+	          	</c:choose>
 	          </div>
 	        </div>
 	      </nav>

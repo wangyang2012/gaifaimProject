@@ -1,6 +1,7 @@
 package fr.gaifaim.controller;
 
 import java.util.Date;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
@@ -9,6 +10,9 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import fr.gaifaim.model.Plat;
+import fr.gaifaim.model.Utilisateur;
+import fr.gaifaim.service.IPlatService;
 import fr.gaifaim.service.IUtilisateurService;
 import fr.gaifaim.utils.DateUtil;
 
@@ -18,6 +22,12 @@ public class MenuController {
 
 	@Autowired
 	IUtilisateurService service;
+	
+	@Autowired
+	IPlatService platService;
+	
+	@Autowired
+	IUtilisateurService utilisateurService;
 
 	@Autowired
 	MessageSource messageSource;
@@ -29,6 +39,9 @@ public class MenuController {
 	public String menu(ModelMap model) {
 		Date date = new Date();
 		String strDate = DateUtil.formateDateToString(date);
+		
+		List<Plat> plats = platService.getAllPlats();
+		List<Utilisateur> utilisateurs = utilisateurService.getAllUtilisateurs();
 		
 		model.addAttribute("date", strDate);
 		model.addAttribute("entree", "春卷");

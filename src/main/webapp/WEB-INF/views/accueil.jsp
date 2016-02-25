@@ -19,11 +19,12 @@
 <script>
 	
 	function reserver() {
-		if ("${userLogin}" == "") {
+		alert("${logged}");
+		if ("${logged}" == "true") {
+			showFormReserver();
+		} else {
 			alert("Veuillez vous connecter!");
 			showLoginForm();
-		} else {
-			showFormReserver();
 		}
 	}
 	
@@ -109,8 +110,10 @@
 					var respContent = "";
 					if (response != null && response.codeRetour == 1) {
 						document.getElementById('seConnecterField').innerHTML="<a>Bonjour, " + response.message + "!</a>";
+						<c:set var="logged" value="true"/>
 						hideLoginForm();
 					} else {
+						<c:set var="logged" value="false"/>
 						respContent = "<span class='error'>Une erreur est survenue!</span>";
 						$("#loginFormResponse").html(respContent);
 					}
@@ -142,7 +145,7 @@
 	            <li> <a href="#">SAVOIR-FAIRE</a> </li>
          
 	            <li class="dropdown"> 
-					<a data-toggle="dropdown" class="dropdown-toggle">ADMIN<b class="caret"></b></a>
+					<a  data-toggle="dropdown" class="dropdown-toggle">ADMIN<b class="caret"></b></a>
 					<ul class="dropdown-menu">
 						<li><a href="#">Comptes</a></li>
 					  	<li><a href="#">Menus</a></li>
@@ -154,7 +157,7 @@
 	          
 	          	<c:choose>
 		          	<c:when test="${logged eq true}">
-		          		<a>Bonjour, ${utilisateur.login}</a>
+		          		<a >Bonjour, ${utilisateur.login}</a>
 		          	</c:when>
 		          	<c:when test="${logged eq false}">
 		          		<a onClick="javascript:showLoginForm()">Se connecter</a>
@@ -165,24 +168,23 @@
 	      </nav>
 	
 		<header class="row">
-			<div class="col-lg-2">
+			<div class="col-lg-3">
 				<img src="${contextPath}/img/gaifaim.png" alt="Gaifaim" />
 			</div>
-			<div class="col-lg-8">
-			
-			
-			</div>
-			<div class="col-lg-2">
-			</div>
-		</header>
+			<div class="col-lg-5">
+				<div id="menu-midi" class="titre1">MENU MIDI DELICIEUX</div>
+				<br />
 
-		<div class="row"*>
-			<section class="col-lg-8">
-				MENU MIDI DELICIEUX<br />plus de saveurs tous les jours<br />LIVRAISON
-				GRATUITE
-			</section>
+				<img src="${contextPath}/img/cover.png"/>
+				<br />
+				<div id="livraison-gratuite" class="titre1">LIVRAISON GRATUITE</div><br/>
+				<div>
+				 Vous êtes lassé des fast-food habituels? Vous ne trouvez plus votre bonheur dans les restaurants près de votre lieu de travail/domicile ? 
 
-			<section class="col-lg-4">
+    Commandez votre plat préféré chez GaiFaim et faites vous livrer un repas chaud 100% fait maison !
+				</div>
+			</div>
+			<div class="col-lg-4">
 				ENTREE<br/>
 				 + <br/>
 				 PLAT<br/>
@@ -195,8 +197,18 @@
 				   ★ Livraison uniquement à Boulogne-Billancourt<br/>
 
 				<h1>
-					<a onClick="reserver()">RESERVER</a>
+					<a  onClick="reserver()">RESERVER</a>
 				</h1>
+				
+			</div>
+		</header>
+
+		<div class="row"*>
+			<section class="col-lg-8">
+				
+			</section>
+
+			<section class="col-lg-4">
 			</section>
 		</div>
 
@@ -210,10 +222,10 @@
 
 	<!-- 	LOGIN -->
 	<div id="dialog-login" title="Se connecter">
-		<form id="formLogin" class="form-horizontal col-lg-6"
+		<form id="formLogin" class="form-horizontal col-lg-11"
 			action="${contextPath}/login">
 			<header>Login</header>
-<%-- 				<a class="text-right" onClick="javascript:hideLoginForm()>X</a> --%>
+				<a class="pull-right"  onClick="javascript:hideLoginForm()">X</a>
 			<div class="row">
 				<div id="loginFormResponse"></div>
 			</div>
@@ -235,7 +247,7 @@
 			</div>
 			<div class="row">
 				<div class="form-group">
-					<label class="pull-left"><a href="/gaifaim/creationCompte">Créer un compte</a></label>
+					<a href="/gaifaim/creationCompte">Créer un compte</a>
 					<button class="pull-right btn btn-default">Connecter</button>
 				</div>
 			</div>
@@ -246,7 +258,7 @@
 
 	<!-- 	RESERVATION -->
 	<div id="dialog-reserver" title="Réservation">
-		<form id="formReserver" class="form-horizontal col-lg-6"
+		<form id="formReserver" class="form-horizontal col-lg-11"
 			action="/gaifaim/reserver">
 			<div class="row">
 				<div id="reserverFormResponse"></div>
